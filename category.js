@@ -8,5 +8,5 @@ export const categories = [
     { id: 'restaurant', name: 'Restaurant & Cafe', description: 'Menus, reservations, and dining experiences.', icon: 'fork-knife', count: 8 },
     { id: 'corporate', name: 'Corporate', description: 'Professional B2B and SaaS agency sites.', icon: 'briefcase', count: 10 },
     { id: 'home-services', name: 'Home Services', description: 'Plumbing, cleaning, and repair businesses.', icon: 'wrench', count: 9 },
-    { id: 'games', name: 'Games', description: 'Browser games, arcade games, puzzles, and interactive gaming websites.', icon: 'gamepad-2', count: 0 }
+    { id: 'games', name: 'Games', description: 'Browser games, arcade games, puzzles, and interactive gaming websites.', icon: 'game-controller', count: 0 }
 ];
