@@ -38,18 +38,18 @@ export const websites = [
         sortOrder: 1,
         status: "active"
     },
-
-        {
+    {
         id: "forest-fight",
         name: "Forest Fight",
-        category: "games", // Fixed hyphenation
-        description: "A premium real estate listing demo with property search.",
+        category: "games",
+        description: "An exciting forest-themed fighting game with action-packed gameplay.",
         image: "assets/images/forest-fight.png",
-        url: "/games/forest-fight",
-        plan: "Premium", // Aligned with frontend badge logic
+        url: "/games/forest-fight/",
+        plan: "Premium",
         featured: true,
-        tags: ["real estate", "property", "listings", "agency", "realtor"],
+        tags: ["game", "forest fight", "action", "fighting", "arcade"],
         sortOrder: 1,
         status: "active"
     }
+
 ];

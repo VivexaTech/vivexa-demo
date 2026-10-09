@@ -1,3 +1,4 @@
+
 export const categories = [
     { id: 'pet-shop', name: 'Pet Shop', description: 'Grooming, clinics, and pet stores.', icon: 'paw-print', count: 4 },
     { id: 'real-estate', name: 'Real Estate', description: 'Property listings and agency profiles.', icon: 'buildings', count: 6 },
@@ -6,5 +7,6 @@ export const categories = [
     { id: 'healthcare', name: 'Healthcare', description: 'Clinics, hospitals, and wellness centers.', icon: 'heartbeat', count: 7 },
     { id: 'restaurant', name: 'Restaurant & Cafe', description: 'Menus, reservations, and dining experiences.', icon: 'fork-knife', count: 8 },
     { id: 'corporate', name: 'Corporate', description: 'Professional B2B and SaaS agency sites.', icon: 'briefcase', count: 10 },
-    { id: 'home-services', name: 'Home Services', description: 'Plumbing, cleaning, and repair businesses.', icon: 'wrench', count: 9 }
-]
+    { id: 'home-services', name: 'Home Services', description: 'Plumbing, cleaning, and repair businesses.', icon: 'wrench', count: 9 },
+    { id: 'games', name: 'Games', description: 'Browser games, arcade games, puzzles, and interactive gaming websites.', icon: 'gamepad-2', count: 0 }
+];
