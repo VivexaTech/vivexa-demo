@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOREST FIGHT — Enter The Wild. Fight To Survive.</title>
+    <!-- FontAwesome for AAA Gaming Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Orbitron for Futuristic Gaming Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+      <script src="../../watermark.js"></script>
+    <style>
+        :root {
+            --forest-green: #123C20;
+            --dark-green: #071C10;
+            --olive-green: #596B2D;
+            --yellow: #DCEB55;
+            --white: #FFFFFF;
+            --black: #050805;
+            --red: #D93636;
+            --gray: #AAB5AA;
+            --glass-bg: rgba(7, 28, 16, 0.75);
+            --glass-border: rgba(220, 235, 85, 0.15);
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Orbitron', sans-serif;
+            --transition-fast: 0.25s ease;
+            --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+
+        body {
+            position: relative;
+            background-color: var(--black);
+            line-height: 1.6;
+        }
+
+        .custom-cursor {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            border-radius: 50%;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--yellow);
+            box-shadow: 0 0 10px var(--yellow);
+        }
+
+        .cursor-ring {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid rgba(220, 235, 85, 0.5);
+            box-shadow: 0 0 15px rgba(220, 235, 85, 0.2);
+            transition: transform 0.15s ease-out;
+        }
+
+        body.hovered .cursor-ring {
+            transform: translate(-50%, -50%) scale(1.6);
+            border-color: var(--red);
+            background-color: rgba(217, 54, 54, 0.1);
+        }
+
+        @media (pointer: coarse) {
+            .custom-cursor { display: none !important; }
+        }
+
+        h1, h2, h3, h4, .brand-text {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            color: var(--yellow);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            background: rgba(220, 235, 85, 0.08);
+            border-left: 3px solid var(--yellow);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--gray) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight-yellow {
+            color: var(--yellow);
+            -webkit-text-fill-color: var(--yellow);
+            text-shadow: 0 0 15px rgba(220, 235, 85, 0.4);
+        }
+
+        .highlight-red {
+            color: var(--red);
+            -webkit-text-fill-color: var(--red);
+            text-shadow: 0 0 15px rgba(217, 54, 54, 0.5);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.95rem 2.2rem;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--yellow) 0%, #b3c430 100%);
+            color: var(--black);
+            box-shadow: 0 0 20px rgba(220, 235, 85, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(220, 235, 85, 0.6);
+            background: var(--yellow);
+        }
+
+        .btn-secondary {
+            background: rgba(18, 60, 32, 0.6);
+            color: var(--white);
+            border: 1px solid var(--olive-green);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+            box-shadow: 0 0 15px rgba(220, 235, 85, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-red {
+            background: linear-gradient(135deg, var(--red) 0%, #a32222 100%);
+            color: var(--white);
+            box-shadow: 0 0 20px rgba(217, 54, 54, 0.3);
+        }
+
+        .btn-red:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(217, 54, 54, 0.6);
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.25rem 5%;
+            transition: var(--transition-smooth);
+            background: rgba(5, 8, 5, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .site-header.scrolled {
+            padding: 0.85rem 5%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, var(--olive-green) 0%, var(--forest-green) 100%);
+            border: 2px solid var(--yellow);
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: var(--yellow);
+            font-size: 1.2rem;
+            box-shadow: 0 0 12px rgba(220, 235, 85, 0.3);
+        }
+
+        .brand-text {
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #FFFFFF, var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--yellow);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--yellow);
+            transition: var(--transition-fast);
+            box-shadow: 0 0 8px var(--yellow);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background-color: var(--white);
+            transition: var(--transition-fast);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background-color: var(--yellow);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: var(--yellow);
+        }
+
+        .header-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--olive-green), var(--yellow), var(--olive-green), transparent);
+            opacity: 0.6;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, var(--dark-green) 0%, var(--black) 90%);
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-vignette {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: radial-gradient(circle at center, transparent 40%, rgba(5, 8, 5, 0.85) 90%),
+                        linear-gradient(to bottom, rgba(5, 8, 5, 0.5), transparent 30%, transparent 70%, var(--black));
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(18, 60, 32, 0.5);
+            border: 1px solid var(--olive-green);
+            border-radius: 20px;
+            color: var(--yellow);
+            font-size: 0.8rem;
+            font-family: var(--font-display);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(18, 60, 32, 0.4);
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            color: var(--gray);
+            max-width: 580px;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        .hero-character-card {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            height: 520px;
+            margin: 0 auto;
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(18, 60, 32, 0.4), rgba(7, 28, 16, 0.8));
+            border: 1px solid rgba(220, 235, 85, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7), inset 0 0 30px rgba(220, 235, 85, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .hero-character-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(220, 235, 85, 0.2), inset 0 0 40px rgba(220, 235, 85, 0.1);
+        }
+
+        /* Pure CSS Warrior Art Graphic */
+        .warrior-art {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .art-glow {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, var(--yellow) 0%, var(--olive-green) 50%, transparent 80%);
+            opacity: 0.25;
+            filter: blur(30px);
+            border-radius: 50%;
+            animation: pulseGlow 4s infinite alternate ease-in-out;
+        }
+
+        .art-silhouette {
+            font-size: 11rem;
+            color: rgba(7, 28, 16, 0.95);
+            text-shadow: 0 0 20px var(--yellow), 0 0 40px var(--forest-green);
+            z-index: 2;
+            filter: drop-shadow(0 0 15px rgba(220,235,85,0.4));
+        }
+
+        .character-info {
+            position: relative;
+            z-index: 3;
+            background: rgba(5, 8, 5, 0.75);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+        }
+
+        .character-title {
+            font-size: 1.2rem;
+            color: var(--yellow);
+            margin-bottom: 0.25rem;
+        }
+
+        .character-class {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.4rem;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--olive-green), var(--yellow));
+            border-radius: 3px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.75rem;
+            font-family: var(--font-display);
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .scroll-indicator:hover {
+            color: var(--yellow);
+        }
+
+        .scroll-arrow {
+            animation: bounce 2s infinite;
+            color: var(--yellow);
+            font-size: 1rem;
+        }
+
+        section {
+            padding: 7rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-visual {
+            position: relative;
+            border-radius: 16px;
+            height: 480px;
+            background: radial-gradient(circle at center, var(--forest-green), var(--black));
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .visual-art-bg {
+            position: absolute;
+            font-size: 16rem;
+            opacity: 0.12;
+            color: var(--yellow);
+        }
+
+        .visual-center-badge {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+            background: rgba(7, 28, 16, 0.85);
+            border-radius: 50%;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--yellow);
+            box-shadow: 0 0 30px rgba(220, 235, 85, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat-card {
+            background: rgba(18, 60, 32, 0.25);
+            border: 1px solid rgba(220, 235, 85, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition-fast);
+        }
+
+        .stat-card:hover {
+            border-color: var(--yellow);
+            background: rgba(18, 60, 32, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--yellow);
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Products / Game Modes Section */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .game-card {
+            background: linear-gradient(180deg, rgba(18, 60, 32, 0.3) 0%, rgba(5, 8, 5, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--yellow);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(220, 235, 85, 0.2);
+        }
+
+        .card-banner {
+            height: 220px;
+            position: relative;
+            background-color: var(--dark-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-banner-icon {
+            font-size: 5rem;
+            color: var(--yellow);
+            transition: var(--transition-smooth);
+        }
+
+        .game-card:hover .card-banner-icon {
+            transform: scale(1.15) rotate(-5deg);
+            color: var(--white);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--red);
+            color: var(--white);
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .card-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .card-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .service-card {
+            background: rgba(7, 28, 16, 0.5);
+            border: 1px solid rgba(89, 107, 45, 0.3);
+            border-radius: 12px;
+            padding: 2.25rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: var(--yellow);
+            background: rgba(18, 60, 32, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 15px rgba(220, 235, 85, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(220, 235, 85, 0.1);
+            border: 1px solid var(--yellow);
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 1.6rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--yellow);
+            color: var(--black);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Why Choose Us Section */
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            background: rgba(18, 60, 32, 0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 1.25rem;
+            border-radius: 10px;
+            transition: var(--transition-fast);
+        }
+
+        .feature-item:hover {
+            border-color: var(--yellow);
+            background: rgba(18, 60, 32, 0.4);
+            transform: translateX(6px);
+        }
+
+        .feature-icon-box {
+            color: var(--yellow);
+            font-size: 1.3rem;
+            margin-top: 0.2rem;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .why-visual-core {
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ring-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px dashed rgba(220, 235, 85, 0.3);
+            animation: spin 20s linear infinite;
+        }
+
+        .ring-1 { width: 100%; height: 100%; }
+        .ring-2 { width: 75%; height: 75%; border-style: solid; border-color: rgba(217, 54, 54, 0.4); animation-duration: 15s; animation-direction: reverse; }
+        .ring-3 { width: 50%; height: 50%; border-color: var(--yellow); animation-duration: 10s; }
+
+        .core-symbol {
+            font-size: 4rem;
+            color: var(--yellow);
+            filter: drop-shadow(0 0 20px var(--yellow));
+            z-index: 2;
+        }
+
+        /* FAQ Accordion Section */
+        .faq-container {
+            max-width: 850px;
+            margin: 3rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .faq-item {
+            background: rgba(7, 28, 16, 0.6);
+            border: 1px solid rgba(89, 107, 45, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition-fast);
+        }
+
+        .faq-item.active {
+            border-color: var(--yellow);
+            background: rgba(18, 60, 32, 0.5);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .faq-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .faq-icon {
+            color: var(--yellow);
+            font-size: 1.2rem;
+            transition: transform var(--transition-fast);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: var(--red);
+        }
+
+        .faq-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease-out, padding 0.35s ease;
+            padding: 0 1.5rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-body {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            position: relative;
+            background: rgba(7, 28, 16, 0.7);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 3rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .testimonial-track {
+            position: relative;
+            min-height: 180px;
+        }
+
+        .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateX(20px);
+        }
+
+        .testimonial-slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .player-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--olive-green);
+            border: 2px solid var(--yellow);
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            color: var(--yellow);
+        }
+
+        .player-info h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+
+        .player-info p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .stars {
+            color: var(--yellow);
+            margin-top: 0.2rem;
+            font-size: 0.85rem;
+        }
+
+        .quote-text {
+            font-size: 1.15rem;
+            color: var(--white);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .slider-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .slider-btn {
+            background: rgba(18, 60, 32, 0.6);
+            border: 1px solid var(--olive-green);
+            color: var(--white);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: var(--transition-fast);
+        }
+
+        .slider-btn:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+            background: var(--forest-green);
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .dot.active {
+            background: var(--yellow);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px var(--yellow);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 3rem;
+            margin-top: 3.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: rgba(7, 28, 16, 0.6);
+            border: 1px solid rgba(89, 107, 45, 0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            transition: var(--transition-fast);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .info-card:hover {
+            border-color: var(--yellow);
+            background: rgba(18, 60, 32, 0.4);
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(220, 235, 85, 0.1);
+            border: 1px solid var(--yellow);
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            color: var(--yellow);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 0.2rem;
+        }
+
+        .info-text p {
+            font-size: 1.05rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: rgba(7, 28, 16, 0.85);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-family: var(--font-display);
+            color: var(--gray);
+            margin-bottom: 0.4rem;
+            letter-spacing: 1px;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(5, 8, 5, 0.7);
+            border: 1px solid rgba(89, 107, 45, 0.4);
+            border-radius: 6px;
+            color: var(--white);
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            outline: none;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--yellow);
+            box-shadow: 0 0 15px rgba(220, 235, 85, 0.2);
+            background: rgba(5, 8, 5, 0.9);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .form-status {
+            margin-top: 1.25rem;
+            padding: 1rem;
+            border-radius: 6px;
+            display: none;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(18, 60, 32, 0.8);
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+        }
+
+        .form-status.error {
+            display: block;
+            background: rgba(217, 54, 54, 0.2);
+            border: 1px solid var(--red);
+            color: #ff8888;
+        }
+
+        .code-drawer-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 900;
+            background: var(--yellow);
+            color: var(--black);
+            border: none;
+            padding: 0.9rem 1.4rem;
+            border-radius: 30px;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.85rem;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(220, 235, 85, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: var(--transition-smooth);
+        }
+
+        .code-drawer-toggle:hover {
+            transform: scale(1.05);
+            background: var(--white);
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
+        }
+
+        .code-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            background: rgba(5, 8, 5, 0.9);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .code-modal.active {
+            display: flex;
+        }
+
+        .code-modal-content {
+            background: #0d1117;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 1000px;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
+        }
+
+        .code-modal-header {
+            padding: 1.25rem 1.75rem;
+            background: #161b22;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .code-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .code-tab {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid transparent;
+            color: var(--gray);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .code-tab.active {
+            background: rgba(220, 235, 85, 0.15);
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .code-modal-body {
+            flex-grow: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        pre code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #c9d1d9;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: var(--forest-green);
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: var(--font-display);
+        }
+
+        .copy-code-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .site-footer {
+            background: #030503;
+            border-top: 1px solid rgba(89, 107, 45, 0.2);
+            padding: 5rem 5% 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--yellow), var(--red), transparent);
+            box-shadow: 0 0 15px var(--yellow);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1300px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand p {
+            color: var(--gray);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            color: var(--yellow);
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--yellow);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes pulseGlow {
+            0% { opacity: 0.2; transform: scale(0.95); }
+            100% { opacity: 0.45; transform: scale(1.1); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 992px) {
+            .hero-container, .about-grid, .why-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .hero-content {
+                align-items: center;
+                text-align: center;
+            }
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 360px;
+                height: 100vh;
+                background: var(--dark-green);
+                flex-direction: column;
+                justify-content: center;
+                padding: 3rem 2rem;
+                transition: var(--transition-smooth);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.9);
+                border-left: 1px solid var(--glass-border);
+            }
+            .nav-menu.active { right: 0; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .testimonial-slider { padding: 2rem 1.5rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor cursor-ring" id="cursor-ring"></div>
+
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="#home" class="brand-logo">
+                <div class="logo-icon"><i class="fa-solid fa-tree"></i></div>
+                <span class="brand-text">FOREST FIGHT</span>
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#why-us" class="nav-link">Why Choose Us</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <a href="#products" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.8rem;">PLAY NOW</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <div class="header-line"></div>
+    </header>
+
+    <section class="hero" id="home">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-vignette"></div>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fa-solid fa-fire"></i> NEXT-GEN SURVIVAL COMBAT</div>
+                <h1 class="hero-title">
+                    ENTER THE WILD.<br>
+                    <span class="highlight-yellow">FIGHT TO SURVIVE.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Step into an immersive AAA forest battlefield where strategy, high-octane melee combat, and environmental survival tactics collide.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary"><i class="fa-solid fa-gamepad"></i> PLAY NOW</a>
+                    <a href="#about" class="btn btn-secondary"><i class="fa-solid fa-compass"></i> EXPLORE GAME</a>
+                </div>
+            </div>
+
+            <div class="hero-character-card">
+                <div class="warrior-art">
+                    <div class="art-glow"></div>
+                    <i class="fa-solid fa-user-ninja warrior-art art-silhouette"></i>
+                </div>
+                <div class="character-info">
+                    <div class="character-title">SHADOW STALKER</div>
+                    <div class="character-class">CLASS: JUNGLE SCOUT</div>
+                    <div style="font-size: 0.75rem; color: var(--gray);">COMBAT READINESS</div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 92%;"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#about" class="scroll-indicator">
+            <span>SCROLL TO EXPLORE</span>
+            <i class="fa-solid fa-chevron-down scroll-arrow"></i>
+        </a>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-visual">
+                    <i class="fa-solid fa-shield-halved visual-art-bg"></i>
+                    <div class="visual-center-badge">
+                        <i class="fa-solid fa-crosshairs" style="font-size: 2.5rem; color: var(--yellow); margin-bottom: 0.5rem;"></i>
+                        <span style="font-family: var(--font-display); font-size: 0.85rem; color: var(--white);">TACTICAL ARENA</span>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <span class="section-tag">OVERVIEW</span>
+                    <h2 class="section-title">THE BATTLE BEGINS <span class="highlight-yellow">IN THE WILD</span></h2>
+                    <p style="color: var(--gray); margin-bottom: 1.5rem;">
+                        Forest Fight is an action-packed survival experience where players explore dangerous forest environments, complete tactical missions, battle elite enemies, and utilize survival strategies to endure.
+                    </p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="50">0</div>
+                            <div class="stat-label">Missions</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="20">0</div>
+                            <div class="stat-label">Battle Zones</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="100">0</div>
+                            <div class="stat-label">Challenges</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" style="font-size: 1.8rem; line-height: 2.2rem; color: var(--red);">LIVE</div>
+                            <div class="stat-label">Multiplayer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products" style="background: rgba(7, 28, 16, 0.4);">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span class="section-tag">GAME MODES</span>
+                <h2 class="section-title">CHOOSE YOUR <span class="highlight-yellow">BATTLE</span></h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Product 1 -->
+                <div class="game-card">
+                    <div class="card-banner">
+                        <span class="card-tag">POPULAR</span>
+                        <i class="fa-solid fa-skull-crossbones card-banner-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">FOREST BATTLE ARENA</h3>
+                        <p class="card-desc">Enter the ultimate jungle combat arena and test your survival skills against aggressive online rivals in intense deathmatches.</p>
+                        <button class="btn btn-secondary" onclick="alert('Launching Forest Battle Arena Mode...')">EXPLORE MODE</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="game-card">
+                    <div class="card-banner">
+                        <span class="card-tag" style="background: var(--forest-green);">CO-OP</span>
+                        <i class="fa-solid fa-compass card-banner-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">SURVIVAL EXPEDITION</h3>
+                        <p class="card-desc">Explore uncharted forest territories, hunt for high-tier loot, complete story-driven missions, and extrafiltrate safely.</p>
+                        <button class="btn btn-secondary" onclick="alert('Launching Survival Expedition...')">EXPLORE MODE</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="game-card">
+                    <div class="card-banner">
+                        <span class="card-tag" style="background: var(--olive-green);">HARDCORE</span>
+                        <i class="fa-solid fa-crown card-banner-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">WARRIOR CHALLENGE</h3>
+                        <p class="card-desc">Fight powerful mythological boss enemies and claim exclusive cosmetic armor to become the ultimate legendary warrior.</p>
+                        <button class="btn btn-secondary" onclick="alert('Launching Warrior Challenge...')">EXPLORE MODE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span class="section-tag">FEATURES & ENGINE</span>
+                <h2 class="section-title">BUILT FOR THE <span class="highlight-yellow">BATTLEFIELD</span></h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Game Development</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem;">Professional high-fidelity forest combat game engine experiences with custom dynamic visual physics.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>Multiplayer Battles</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem;">Low-latency netcode architecture enabling global matchmaking with smooth combat tick rates.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <h3>Custom Game Modes</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem;">Modular gameplay modifiers including Night Survival, Fog of War, and Hardcore Permadeath options.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <h3>Game Events</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem;">Seasonal environmental events featuring dynamic weather changes and limited-time boss raids.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <h3>Tournament Support</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem;">Integrated spectator modes, custom lobby management, and leaderboard tracking systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h3>Player Support</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem;">24/7 dedicated support team assisting with server performance, accounts, and community inquiries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us" id="why-us" style="background: rgba(7, 28, 16, 0.4);">
+        <div class="container">
+            <div class="why-grid">
+                <div>
+                    <span class="section-tag">ADVANTAGES</span>
+                    <h2 class="section-title">WHY ENTER THE WILD <span class="highlight-yellow">WITH US?</span></h2>
+
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-icon-box"><i class="fa-solid fa-leaf"></i></div>
+                            <div>
+                                <div class="feature-title">Immersive Forest Environment</div>
+                                <div class="feature-desc">Dynamic foliage density, realistic wind physics, and full night/day cycles.</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon-box"><i class="fa-solid fa-bolt"></i></div>
+                            <div>
+                                <div class="feature-title">Smooth & Reactive Combat</div>
+                                <div class="feature-desc">Fluid combat animations optimized for high-FPS competitive gameplay.</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon-box"><i class="fa-solid fa-chess"></i></div>
+                            <div>
+                                <div class="feature-title">Strategic Mission System</div>
+                                <div class="feature-desc">Evolving battlefield objectives that reward tactical foresight and teamwork.</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="why-visual-core">
+                    <div class="ring-container">
+                        <div class="orbit-ring ring-1"></div>
+                        <div class="orbit-ring ring-2"></div>
+                        <div class="orbit-ring ring-3"></div>
+                        <i class="fa-solid fa-tree-city core-symbol"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span class="section-tag">HELP & INFO</span>
+                <h2 class="section-title">FREQUENTLY ASKED <span class="highlight-yellow">QUESTIONS</span></h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <div class="faq-question">What is Forest Fight?</div>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-body">
+                        Forest Fight is a commercial multi-platform survival action game where players engage in tactical melee and ranged battles across realistic dense wilderness environments.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <div class="faq-question">How do I start playing?</div>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-body">
+                        Click on the "PLAY NOW" button at the top of the page to launch the browser launcher or download our standalone client installer.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <div class="faq-question">Is multiplayer available?</div>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-body">
+                        Yes! We offer global dedicated server matchmaking for Free-For-All, 4v4 Squad Deathmatches, and 50-player Survival Extraction Raids.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <div class="faq-question">How can I contact player support?</div>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-body">
+                        You can reach our player support team using the contact form below or directly via email at forestplay9266@gmail.com or phone at +91 9266907803.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials" style="background: rgba(7, 28, 16, 0.4);">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span class="section-tag">COMMUNITY FEEDBACK</span>
+                <h2 class="section-title">WHAT PLAYERS <span class="highlight-yellow">SAY</span></h2>
+            </div>
+
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-slide active">
+                        <div class="player-meta">
+                            <div class="avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+                            <div class="player-info">
+                                <h4>Marcus Vance</h4>
+                                <p>Pro Esports Competitor</p>
+                                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                        </div>
+                        <p class="quote-text">"An incredibly immersive forest combat experience. The atmosphere, audio fidelity, and sword mechanics feel remarkably authentic."</p>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="testimonial-slide">
+                        <div class="player-meta">
+                            <div class="avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                            <div class="player-info">
+                                <h4>Elena Rostova</h4>
+                                <p>Twitch Gaming Streamer</p>
+                                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                        </div>
+                        <p class="quote-text">"The combination of environmental survival and fast-paced melee combat makes every single raid unpredictable and thrilling."</p>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="testimonial-slide">
+                        <div class="player-meta">
+                            <div class="avatar"><i class="fa-solid fa-user-shield"></i></div>
+                            <div class="player-info">
+                                <h4>David Chen</h4>
+                                <p>Tactical Guild Leader</p>
+                                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                        </div>
+                        <p class="quote-text">"The game performance is rock solid even during intense multiplayer battles. The forest lighting effects are unmatched!"</p>
+                    </div>
+                </div>
+
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prev-testimonial"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div class="slider-dots" id="slider-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="slider-btn" id="next-testimonial"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span class="section-tag">GET IN TOUCH</span>
+                <h2 class="section-title">READY TO ENTER <span class="highlight-yellow">THE WILD?</span></h2>
+                <p style="color: var(--gray);">Have a question, partnership idea or need support? Send us a message.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <a href="tel:9266907803" class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="info-text">
+                            <h4>PHONE SUPPORT</h4>
+                            <p>9266907803</p>
+                        </div>
+                    </a>
+
+                    <a href="mailto:forestplay9266@gmail.com" class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="info-text">
+                            <h4>DIRECT EMAIL</h4>
+                            <p>forestplay9266@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="info-text">
+                            <h4>HEADQUARTERS</h4>
+                            <p style="font-size: 0.9rem;">Vishal magemart, Plot no. 13, Dundahera, Haryana 122016</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label">FULL NAME</label>
+                            <input type="text" id="form-name" class="form-input" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">EMAIL ADDRESS</label>
+                                <input type="email" id="form-email" class="form-input" placeholder="name@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">PHONE NUMBER</label>
+                                <input type="tel" id="form-phone" class="form-input" placeholder="Your phone number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">SUBJECT</label>
+                            <input type="text" id="form-subject" class="form-input" placeholder="Game Inquiry / Support" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">MESSAGE</label>
+                            <textarea id="form-message" class="form-textarea" rows="4" placeholder="How can we help you survivor?" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-red" style="width: 100%;">
+                            <i class="fa-solid fa-paper-plane"></i> SEND MESSAGE
+                        </button>
+
+                        <div id="form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button class="code-drawer-toggle" id="open-code-modal">
+        <i class="fa-solid fa-code"></i> INSPECT FLASK CODE
+    </button>
+
+    <div class="code-modal" id="code-modal">
+        <div class="code-modal-content">
+            <div class="code-modal-header">
+                <div class="code-tabs">
+                    <button class="code-tab active" data-file="app.py">app.py</button>
+                    <button class="code-tab" data-file="requirements.txt">requirements.txt</button>
+                    <button class="code-tab" data-file=".env.example">.env.example</button>
+                    <button class="code-tab" data-file="README.md">README.md</button>
+                    <button class="code-tab" data-file=".gitignore">.gitignore</button>
+                </div>
+                <button id="close-code-modal" style="background: none; border: none; color: var(--gray); font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            <div class="code-modal-body">
+                <button class="copy-code-btn" id="copy-code-btn">COPY FILE</button>
+                <pre><code id="code-display">Loading source code...</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-line"></div>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#home" class="brand-logo">
+                    <div class="logo-icon"><i class="fa-solid fa-tree"></i></div>
+                    <span class="brand-text">FOREST FIGHT</span>
+                </a>
+                <p>ENTER THE WILD. FIGHT TO SURVIVE. Premium AAA survival combat experience built with dynamic web technology.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>GAME MODES</h4>
+                <ul class="footer-links">
+                    <li><a href="#products">Battle Arena</a></li>
+                    <li><a href="#products">Survival Expedition</a></li>
+                    <li><a href="#products">Warrior Challenge</a></li>
+                    <li><a href="#services">Tournament Mode</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>CONTACT</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:9266907803">9266907803</a></li>
+                    <li><a href="mailto:forestplay9266@gmail.com">forestplay9266@gmail.com</a></li>
+                    <li style="color: var(--gray);">Vishal magemart, Plot no. 13, Dundahera, Haryana 122016</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>&copy; 2026 Forest Fight. All Rights Reserved.</div>
+            <div style="display: flex; gap: 1rem; font-size: 1.2rem;">
+                <a href="#" style="color: var(--gray);"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" style="color: var(--gray);"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" style="color: var(--gray);"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* Custom glowing cursor logic */
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorRing = document.getElementById('cursor-ring');
+
+            window.addEventListener('mousemove', (e) => {
+                const { clientX: x, clientY: y } = e;
+                cursorDot.style.left = `${x}px`;
+                cursorDot.style.top = `${y}px`;
+                
+                cursorRing.animate({
+                    left: `${x}px`,
+                    top: `${y}px`
+                }, { duration: 250, fill: 'forwards' });
+            });
+
+            document.querySelectorAll('a, button, .game-card, .service-card').forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('hovered'));
+            });
+
+            /* Sticky Header & Scroll Blur */
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            /* Mobile Menu Navigation */
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            /* Canvas Forest Atmospheric Particle Engine */
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height, particles = [];
+
+            function resizeCanvas() {
+                width = canvas.width = canvas.offsetWidth;
+                height = canvas.height = canvas.offsetHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 0.8 - 0.4;
+                    this.speedY = Math.random() * -0.8 - 0.2;
+                    this.alpha = Math.random() * 0.7 + 0.2;
+                    this.color = Math.random() > 0.3 ? '#DCEB55' : '#D93636';
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.y < 0 || this.x < 0 || this.x > width) {
+                        this.reset();
+                        this.y = height + 10;
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = this.color;
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            for (let i = 0; i < 65; i++) {
+                particles.push(new Particle());
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            /* Animated Counter Stats Observer */
+            const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+            let animated = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        statNumbers.forEach(num => {
+                            const target = +num.getAttribute('data-target');
+                            let count = 0;
+                            const speed = target / 30;
+                            const updateCount = () => {
+                                count += speed;
+                                if (count < target) {
+                                    num.innerText = Math.ceil(count) + '+';
+                                    setTimeout(updateCount, 40);
+                                } else {
+                                    num.innerText = target + '+';
+                                }
+                            };
+                            updateCount();
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) observer.observe(aboutSection);
+
+            /* FAQ Accordion */
+            document.querySelectorAll('.faq-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.parentElement;
+                    const isActive = item.classList.contains('active');
+                    
+                    document.querySelectorAll('.faq-item').forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-body').style.maxHeight = null;
+                    });
+
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const body = item.querySelector('.faq-body');
+                        body.style.maxHeight = body.scrollHeight + 'px';
+                    }
+                });
+            });
+
+            /* Testimonials Carousel */
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.dot');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((s, i) => {
+                    s.classList.toggle('active', i === index);
+                    dots[i].classList.toggle('active', i === index);
+                });
+                currentSlide = index;
+            }
+
+            document.getElementById('next-testimonial').addEventListener('click', () => {
+                showSlide((currentSlide + 1) % slides.length);
+            });
+
+            document.getElementById('prev-testimonial').addEventListener('click', () => {
+                showSlide((currentSlide - 1 + slides.length) % slides.length);
+            });
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => showSlide(idx));
+            });
+
+            setInterval(() => {
+                showSlide((currentSlide + 1) % slides.length);
+            }, 6000);
+
+            /* Contact Form Submission Handling */
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const message = document.getElementById('form-message').value;
+                if (message.length < 10) {
+                    formStatus.className = 'form-status error';
+                    formStatus.innerText = 'Message must be at least 10 characters long.';
+                    return;
+                }
+
+                formStatus.className = 'form-status success';
+                formStatus.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing request via Flask Resend API...';
+
+                setTimeout(() => {
+                    formStatus.className = 'form-status success';
+                    formStatus.innerText = 'Your message has been sent successfully. We will get back to you soon.';
+                    contactForm.reset();
+                }, 1800);
+            });
+
+            /* Code Drawer Sources Store */
+            const filesData = {
+                "app.py": `import os
+from flask import Flask, render_template, request, jsonify
+from dotenv import load_dotenv
+import resend
+
+load_dotenv()
+
+app = Flask(__name__)
+resend.api_key = os.getenv("RESEND_API_KEY")
+
+CONTACT_TO_EMAIL = os.getenv("CONTACT_TO_EMAIL", "forestplay9266@gmail.com")
+FROM_EMAIL = os.getenv("FROM_EMAIL", "onboarding@resend.dev")
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/api/contact", methods=["POST"])
+def contact():
+    data = request.get_json() or {}
+    name = data.get("name")
+    email = data.get("email")
+    phone = data.get("phone", "N/A")
+    subject = data.get("subject")
+    message = data.get("message")
+
+    if not all([name, email, subject, message]):
+        return jsonify({"success": False, "message": "All required fields must be filled."}), 400
+
+    try:
+        resend.Emails.send({
+            "from": FROM_EMAIL,
+            "to": [CONTACT_TO_EMAIL],
+            "subject": f"New Forest Fight Contact: {subject}",
+            "html": f"""
+                <h3>New Contact Form Message</h3>
+                <p><b>Name:</b> {name}</p>
+                <p><b>Email:</b> {email}</p>
+                <p><b>Phone:</b> {phone}</p>
+                <p><b>Subject:</b> {subject}</p>
+                <p><b>Message:</b><br>{message}</p>
+            """
+        })
+        return jsonify({"success": True, "message": "Your message has been sent successfully."}), 200
+    except Exception as e:
+        return jsonify({"success": False, "message": "Unable to send your message. Please try again."}), 500
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)`,
+
+                "requirements.txt": `Flask==3.0.2\npython-dotenv==1.0.1\nresend==0.7.0`,
+
+                ".env.example": `RESEND_API_KEY=re_123456789_your_key_here\nCONTACT_TO_EMAIL=forestplay9266@gmail.com\nFROM_EMAIL=onboarding@resend.dev`,
+
+                "README.md": `# FOREST FIGHT — AAA Gaming Web Application
+
+## Setup Instructions
+
+1. Clone repository & create virtualenv:
+   \`\`\`bash
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\\Scripts\\activate
+   \`\`\`
+
+2. Install dependencies:
+   \`\`\`bash
+   pip install -r requirements.txt
+   \`\`\`
+
+3. Configure Environment:
+   Copy \`.env.example\` to \`.env\` and add your valid Resend API key.
+
+4. Run Server:
+   \`\`\`bash
+   python app.py
+   \`\`\`
+   Open http://127.0.0.1:5000 in your browser.`,
+
+                ".gitignore": `.env\n__pycache__/\n*.pyc\nvenv/\n.venv/`
+            };
+
+            const codeModal = document.getElementById('code-modal');
+            const codeDisplay = document.getElementById('code-display');
+            const copyCodeBtn = document.getElementById('copy-code-btn');
+            let currentFile = 'app.py';
+
+            document.getElementById('open-code-modal').addEventListener('click', () => {
+                codeModal.classList.add('active');
+                loadCodeFile('app.py');
+            });
+
+            document.getElementById('close-code-modal').addEventListener('click', () => {
+                codeModal.classList.remove('active');
+            });
+
+            document.querySelectorAll('.code-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentFile = e.target.getAttribute('data-file');
+                    loadCodeFile(currentFile);
+                });
+            });
+
+            function loadCodeFile(filename) {
+                codeDisplay.textContent = filesData[filename] || 'File not found.';
+            }
+
+            copyCodeBtn.addEventListener('click', () => {
+                const text = codeDisplay.textContent;
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                copyCodeBtn.innerText = 'COPIED!';
+                setTimeout(() => copyCodeBtn.innerText = 'COPY FILE', 2000);
+            });
+        });
+    </script>
+</body>
+</html>

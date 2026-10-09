@@ -37,5 +37,19 @@ export const websites = [
         tags: ["real estate", "property", "listings", "agency", "realtor"],
         sortOrder: 1,
         status: "active"
+    },
+
+        {
+        id: "forest-fight",
+        name: "Forest Fight",
+        category: "games", // Fixed hyphenation
+        description: "A premium real estate listing demo with property search.",
+        image: "assets/images/forest-fight.png",
+        url: "/games/forest-fight",
+        plan: "Premium", // Aligned with frontend badge logic
+        featured: true,
+        tags: ["real estate", "property", "listings", "agency", "realtor"],
+        sortOrder: 1,
+        status: "active"
     }
 ];
