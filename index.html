@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivexa Demo Hub | Internal Demo Library</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            /* Color Palette */
+            --bg-base: #09090b;
+            --bg-surface: #18181b;
+            --bg-surface-hover: #27272a;
+
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-focus: rgba(255, 255, 255, 0.15);
+
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            --accent-glow: rgba(99, 102, 241, 0.25);
+
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+            border: none;
+            outline: none;
+        }
+
+        /* Container setup */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-search {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .nav-search {
+                display: block;
+            }
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            transition: var(--transition-smooth);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .hero {
+            padding: 5rem 0 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(0.9rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-search {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-search .search-input {
+            padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+            font-size: 1rem;
+            border-radius: var(--radius-xl);
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-search .search-icon {
+            left: 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        /* Grid Layouts */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-focus);
+            background: var(--bg-surface-hover);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .category-card:hover .category-icon {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .category-info h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .category-info p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .demo-count {
+            margin-top: auto;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-self: flex-start;
+        }
+
+        .demo-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+        }
+
+        .demo-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-focus);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .demo-image-wrapper {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-base);
+        }
+
+        .demo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.5s ease;
+        }
+
+        .demo-card:hover .demo-image {
+            transform: scale(1.05);
+        }
+
+        .demo-badges {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .badge {
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge.premium {
+            background: var(--accent-gradient);
+            border: none;
+        }
+
+        .demo-content {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .demo-category-label {
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .demo-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-actions {
+            margin-top: auto;
+            padding-top: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-open {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .btn-open:hover {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            border-color: var(--text-primary);
+        }
+
+        .btn-back {
+            background: transparent;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            margin-bottom: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-back:hover {
+            color: var(--text-primary);
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px dashed var(--border-light);
+            color: var(--text-secondary);
+        }
+
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-light);
+            padding: 2rem 0;
+            background: var(--bg-surface);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.5rem;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            /* Hide text links on mobile to save space */
+            section {
+                padding: 2rem 0;
+            }
+
+            .hero {
+                padding: 3rem 0 2rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .demo-image-wrapper {
+                height: 160px;
+            }
+        }
+
+        /* Helper Classes */
+        .hidden {
+            display: none !important;
+        }
+
+
+        .demo-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            background: #25D366;
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #25D366;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-whatsapp:hover {
+            background: #1DA851;
+            border-color: #1DA851;
+            transform: translateY(-1px);
+        }
+
+        .btn-whatsapp i {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a id="logoHomeBtn" class="logo">
+                <i class="ph-fill ph-circles-four"></i>
+                Vivexa Demo Hub
+            </a>
+
+            <div class="nav-search">
+                <i class="ph ph-magnifying-glass search-icon"></i>
+                <input type="text" id="navSearchInput" class="search-input"
+                    placeholder="Search demos by name or category...">
+            </div>
+
+            <nav class="nav-links">
+                <a href="#" onclick="showHomeView()">Categories</a>
+                <a href="#" onclick="showHomeView()">Featured</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero-section" class="hero">
+            <div class="container">
+                <h1>
+                    <span class="gradient-text">Every Business.</span><br>
+                    One Demo Library.
+                </h1>
+                <p>Explore ready-to-show website demos and share them with clients in seconds. A centralized hub for
+                    Vivexa Tech internal use.</p>
+
+                <div class="hero-search">
+                    <i class="ph ph-magnifying-glass search-icon"></i>
+                    <input type="text" id="heroSearchInput" class="search-input"
+                        placeholder="Find a demo for your next client pitch...">
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Search Results Section (Hidden by default) -->
+        <section id="search-results-section" class="hidden">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 id="search-results-title">Search Results</h2>
+                        <p>Demos matching your query</p>
+                    </div>
+                    <button class="btn-open" id="clearSearchBtn" style="width: auto; padding: 0.5rem 1rem;">Clear
+                        Search</button>
+                </div>
+                <div class="demos-grid" id="search-results-grid"></div>
+            </div>
+        </section>
+
+        <!-- Dynamic Category Details Section (Hidden by default) -->
+        <section id="category-view-section" class="hidden">
+            <div class="container">
+                <button class="btn-back" onclick="showHomeView()">
+                    <i class="ph ph-arrow-left"></i> Back to Categories
+                </button>
+                <div class="section-header">
+                    <div>
+                        <h2 id="category-view-title">Category Name</h2>
+                        <p id="category-view-desc">Category Description</p>
+                    </div>
+                </div>
+                <div class="demos-grid" id="category-demos-grid"></div>
+            </div>
+        </section>
+
+        <!-- Default Homepage Sections -->
+        <section id="categories-section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2>Browse by Category</h2>
+                        <p>Explore specialized demo templates for different industries</p>
+                    </div>
+                </div>
+                <div class="categories-grid" id="categories-grid"></div>
+            </div>
+        </section>
+
+        <section id="featured-section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2>Featured Demos</h2>
+                        <p>Our top-converting, premium website layouts</p>
+                    </div>
+                </div>
+                <div class="demos-grid" id="featured-demos-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">Vivexa Tech</div>
+            <p class="footer-text">&copy; <span id="currentYear"></span> Vivexa Tech. Internal Website Demo Library.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { categories } from './category.js';
+        import { websites, getWebsitesByCategory, searchWebsites, getCategoryById } from './data.js';
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const categoriesGrid = document.getElementById('categories-grid');
+        const featuredDemosGrid = document.getElementById('featured-demos-grid');
+        const searchResultsGrid = document.getElementById('search-results-grid');
+        const categoryDemosGrid = document.getElementById('category-demos-grid');
+
+        const heroSection = document.getElementById('hero-section');
+        const searchResultsSection = document.getElementById('search-results-section');
+        const categoriesSection = document.getElementById('categories-section');
+        const featuredSection = document.getElementById('featured-section');
+        const categoryViewSection = document.getElementById('category-view-section');
+
+        const navSearchInput = document.getElementById('navSearchInput');
+        const heroSearchInput = document.getElementById('heroSearchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const logoHomeBtn = document.getElementById('logoHomeBtn');
+
+        function init() {
+            renderCategories();
+            renderFeaturedDemos();
+            setupEventListeners();
+            window.showHomeView = showHomeView;
+        }
+
+        function renderCategories() {
+            categoriesGrid.innerHTML = '';
+
+            if (!categories || categories.length === 0) {
+                categoriesGrid.innerHTML = '<div class="empty-state">No categories available.</div>';
+                return;
+            }
+
+            categories.forEach(category => {
+                // Dynamically calculate using correct property
+                const actualCount = getWebsitesByCategory(
+                    category.id
+                ).length;
+                const iconClass = category.icon ? `ph ph-${category.icon}` : 'ph ph-folder';
+
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.onclick = () => showCategoryView(category.id);
+                card.innerHTML = `
+                <div class="category-icon">
+                    <i class="${iconClass}"></i>
+                </div>
+                <div class="category-info">
+                    <h3>${category.name}</h3>
+                    <p>${category.description || 'Explore demos in this category.'}</p>
+                </div>
+                <div class="demo-count">${actualCount} Demos</div>
+            `;
+                categoriesGrid.appendChild(card);
+            });
+        }
+
+
+        function createDemoCard(demo) {
+            const categoryObj = getCategoryById(demo.category);
+            const categoryName = categoryObj
+                ? categoryObj.name
+                : 'Uncategorized';
+
+            const planText = demo.plan || 'Standard';
+            const planBadgeClass =
+                planText.toLowerCase() === 'premium'
+                    ? 'badge premium'
+                    : 'badge';
+
+            const imageUrl = demo.image ||
+                'https://placehold.co/600x400/18181b/a1a1aa?text=Image+Missing';
+
+            const demoUrl = new URL(
+                demo.url || '#',
+                window.location.origin
+            ).href;
+
+            const shareMessage =
+                `Check out this website demo: ${demo.name}\n\n` +
+                `Category: ${categoryName}\n` +
+                `${demo.description || ''}\n\n` +
+                `View Demo: ${demoUrl}`;
+
+            const whatsappUrl =
+                `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+
+            const card = document.createElement('div');
+            card.className = 'demo-card';
+
+            card.innerHTML = `
+        <div class="demo-image-wrapper">
+            <img
+                src="${imageUrl}"
+                alt="${demo.name || 'Website demo'}"
+                class="demo-image"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x400/18181b/a1a1aa?text=Image+Error'"
+            >
+            <div class="demo-badges">
+                <span class="${planBadgeClass}">${planText}</span>
+            </div>
+        </div>
+
+        <div class="demo-content">
+            <span class="demo-category-label">${categoryName}</span>
+            <h3 class="demo-title">${demo.name || 'Website Demo'}</h3>
+
+            <div class="demo-actions">
+                <a
+                    href="${demoUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-open"
+                >
+                    <span>Open Demo</span>
+                    <i class="ph ph-arrow-up-right"></i>
+                </a>
+
+                <a
+                    href="${whatsappUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-whatsapp"
+                    aria-label="Share ${demo.name || 'website demo'} on WhatsApp"
+                >
+                    <i class="ph ph-whatsapp-logo"></i>
+                    <span>Share on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    `;
+
+            return card;
+        }
+
+        function renderFeaturedDemos() {
+            featuredDemosGrid.innerHTML = '';
+            const featured = websites.filter(w => w.featured && w.status === 'active');
+
+            if (featured.length === 0) {
+                featuredDemosGrid.innerHTML = '<div class="empty-state">No featured demos at this time.</div>';
+                return;
+            }
+            featured.forEach(demo => featuredDemosGrid.appendChild(createDemoCard(demo)));
+        }
+
+        function showHomeView(e) {
+            if (e) e.preventDefault();
+            navSearchInput.value = '';
+            heroSearchInput.value = '';
+
+            heroSection.classList.remove('hidden');
+            categoriesSection.classList.remove('hidden');
+            featuredSection.classList.remove('hidden');
+
+            searchResultsSection.classList.add('hidden');
+            categoryViewSection.classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showCategoryView(categoryId) {
+            const category = getCategoryById(categoryId);
+            if (!category) return;
+
+            document.getElementById('category-view-title').textContent = category.name;
+            document.getElementById('category-view-desc').textContent = category.description;
+
+            // Utilizing data.js helper
+            const categoryDemos = getWebsitesByCategory(categoryId);
+            categoryDemosGrid.innerHTML = '';
+
+            if (categoryDemos.length === 0) {
+                categoryDemosGrid.innerHTML = '<div class="empty-state">No demos uploaded for this category yet.</div>';
+            } else {
+                categoryDemos.forEach(demo => categoryDemosGrid.appendChild(createDemoCard(demo)));
+            }
+
+            heroSection.classList.add('hidden');
+            categoriesSection.classList.add('hidden');
+            featuredSection.classList.add('hidden');
+            searchResultsSection.classList.add('hidden');
+            categoryViewSection.classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleSearch(event) {
+            const query = event.target.value.trim();
+
+            if (event.target === navSearchInput) heroSearchInput.value = query;
+            if (event.target === heroSearchInput) navSearchInput.value = query;
+
+            if (query === '') {
+                showHomeView();
+                return;
+            }
+
+            // Delegate search logic to data.js
+            const results = searchWebsites(query);
+
+            heroSection.classList.add('hidden');
+            categoriesSection.classList.add('hidden');
+            featuredSection.classList.add('hidden');
+            categoryViewSection.classList.add('hidden');
+            searchResultsSection.classList.remove('hidden');
+
+            searchResultsGrid.innerHTML = '';
+            document.getElementById('search-results-title').textContent = `Results for "${query}"`;
+
+            if (results.length === 0) {
+                searchResultsGrid.innerHTML = '<div class="empty-state">No demos found matching your search. Try different keywords.</div>';
+            } else {
+                results.forEach(demo => searchResultsGrid.appendChild(createDemoCard(demo)));
+            }
+        }
+
+        function setupEventListeners() {
+            navSearchInput.addEventListener('input', handleSearch);
+            heroSearchInput.addEventListener('input', handleSearch);
+            clearSearchBtn.addEventListener('click', showHomeView);
+            logoHomeBtn.addEventListener('click', showHomeView);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+        console.log('Vivexa Demo Hub initialized successfully.');
+    </script>
+
+
+</body>
+
+</html>

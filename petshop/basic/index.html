@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mahi Pet Care & Pet Store - Premium pet care, grooming, veterinary assistance, boarding, and high-quality pet products in Ashok Vihar." />
+  <meta name="keywords" content="Pet Store, Pet Care, Grooming, Pet Food, Pet Boarding, Mahi Pet Care, Ashok Vihar" />
+  <title>Mahi Pet Care & Pet Store | Premium Pet Services & Supplies</title>
+
+  <!-- Open Graph / Social Media Metadata -->
+  <meta property="og:title" content="Mahi Pet Care & Pet Store" />
+  <meta property="og:description" content="Everything Your Pet Needs, All in One Place. Trusted care, grooming, and top-tier products." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1450778869186-3997d5a518da?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="../../watermark.js"></script>
+  <style>
+    :root {
+      --primary-white: #FFFFFF;
+      --primary-dark-green: #075c45;
+      --accent-green: #2E7D6E;
+      --accent-green-hover: #236357;
+      --light-green-bg: #F0F7F4;
+      --dark-text: #121212;
+      --muted-text: #555555;
+      --border-color: #020407;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+      --shadow-md: 0 8px 24px rgba(27, 77, 62, 0.08);
+      --shadow-lg: 0 16px 32px rgba(0,0,0,0.12);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --header-height: 80px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color: var(--dark-text);
+      background-color: var(--primary-white);
+      overflow-x: hidden;
+    }
+
+    body {
+      line-height: 1.6;
+      background-color: var(--primary-white);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Common Layout & Container Elements */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title-wrapper {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 3.5rem auto;
+    }
+
+    .sub-title {
+      display: inline-block;
+      color: var(--accent-green);
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      background-color: var(--light-green-bg);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      color: var(--primary-dark-green);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-description {
+      color: var(--muted-text);
+      font-size: 1.05rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-dark-green);
+      color: var(--primary-white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-green);
+      box-shadow: 0 6px 20px rgba(46, 125, 110, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border-color: var(--primary-dark-green);
+      color: var(--primary-dark-green);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--primary-dark-green);
+      color: var(--primary-white);
+      transform: translateY(-2px);
+    }
+
+    .btn-accent {
+      background-color: var(--accent-green);
+      color: var(--primary-white);
+    }
+
+    .btn-accent:hover {
+      background-color: var(--accent-green-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Scroll Reveal Animation Styles */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: var(--transition);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+    }
+
+    header.scrolled {
+      box-shadow: var(--shadow-md);
+      height: 70px;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-dark-green);
+    }
+
+    .logo i {
+      font-size: 1.6rem;
+      color: var(--accent-green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .nav-link {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--dark-text);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-green);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--accent-green);
+      border-radius: var(--radius-full);
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--primary-dark-green);
+    }
+
+    /* Mobile Drawer */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background-color: var(--primary-white);
+      box-shadow: var(--shadow-lg);
+      z-index: 1001;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .mobile-menu.open {
+      right: 0;
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .close-btn {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--muted-text);
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .mobile-nav-link {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark-text);
+    }
+
+    .mobile-nav-link:hover, .mobile-nav-link.active {
+      color: var(--accent-green);
+    }
+
+    .backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hero {
+      padding-top: calc(var(--header-height) + 3rem);
+      padding-bottom: 5rem;
+      background: linear-gradient(135deg, var(--light-green-bg) 0%, #FFFFFF 100%);
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 3.25rem;
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--primary-dark-green);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title span {
+      color: var(--accent-green);
+    }
+
+    .hero-text {
+      font-size: 1.15rem;
+      color: var(--muted-text);
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+    }
+
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--primary-dark-green);
+    }
+
+    .badge-item i {
+      color: var(--accent-green);
+      background-color: var(--primary-white);
+      padding: 0.5rem;
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-image-container {
+      position: relative;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+
+    .floating-card {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--primary-white);
+      padding: 1.2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .floating-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--light-green-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+      font-size: 1.4rem;
+    }
+
+    .floating-card-text h4 {
+      font-size: 1rem;
+      color: var(--primary-dark-green);
+    }
+
+    .floating-card-text p {
+      font-size: 0.85rem;
+      color: var(--muted-text);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image-wrapper {
+      position: relative;
+    }
+
+    .about-img {
+      border-radius: var(--radius-lg);
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-content h3 {
+      font-size: 1.8rem;
+      color: var(--primary-dark-green);
+      margin-bottom: 1rem;
+    }
+
+    .about-content p {
+      color: var(--muted-text);
+      margin-bottom: 1.25rem;
+      font-size: 1.025rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background-color: var(--light-green-bg);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      border: 1px solid rgba(46, 125, 110, 0.15);
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark-text);
+    }
+
+    .products-section {
+      background-color: #FAFAFA;
+    }
+
+    .filter-pills {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      background-color: var(--primary-white);
+      color: var(--muted-text);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background-color: var(--primary-dark-green);
+      color: var(--primary-white);
+      border-color: var(--primary-dark-green);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--primary-white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-green);
+    }
+
+    .product-img-box {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      background-color: #F8FAF9;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+    }
+
+    .product-category-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-green);
+    }
+
+    .product-details {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-rating {
+      color: #FFB800;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dark-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-desc {
+      color: var(--muted-text);
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-dark-green);
+    }
+
+    .add-cart-btn {
+      background-color: var(--light-green-bg);
+      color: var(--primary-dark-green);
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .add-cart-btn:hover {
+      background-color: var(--accent-green);
+      color: var(--primary-white);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background-color: var(--primary-white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--accent-green);
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-card:hover::before {
+      width: 8px;
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      background-color: var(--light-green-bg);
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-title {
+      font-size: 1.35rem;
+      color: var(--primary-dark-green);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      color: var(--muted-text);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .why-section {
+      background-color: var(--light-green-bg);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .why-card {
+      background-color: var(--primary-white);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .why-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .why-icon-box {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--light-green-bg);
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .why-content h4 {
+      font-size: 1.15rem;
+      color: var(--primary-dark-green);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .why-content p {
+      color: var(--muted-text);
+      font-size: 0.9rem;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background-color: var(--primary-white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-item.active {
+      border-color: var(--accent-green);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary-dark-green);
+      cursor: pointer;
+    }
+
+    .faq-icon {
+      font-size: 1.1rem;
+      color: var(--accent-green);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      background-color: #FAFAFA;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 0 1.5rem 1.25rem 1.5rem;
+    }
+
+    .faq-answer p {
+      color: var(--muted-text);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .testimonials-section {
+      background-color: #FAFAFA;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-carousel-wrapper {
+      max-width: 850px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .testimonial-track-container {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+
+    .testimonial-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .testimonial-slide {
+      min-width: 100%;
+      background: var(--primary-white);
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.25rem;
+      border: 3px solid var(--accent-green);
+    }
+
+    .testimonial-stars {
+      color: #FFB800;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text {
+      font-size: 1.1rem;
+      color: var(--dark-text);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .testimonial-author {
+      font-weight: 800;
+      color: var(--primary-dark-green);
+      font-size: 1.1rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.85rem;
+      color: var(--muted-text);
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background-color: var(--primary-white);
+      color: var(--primary-dark-green);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .carousel-btn:hover {
+      background-color: var(--primary-dark-green);
+      color: var(--primary-white);
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #CBD5E1;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .dot.active {
+      background-color: var(--accent-green);
+      width: 28px;
+      border-radius: var(--radius-full);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem;
+    }
+
+    .contact-info-card {
+      background-color: var(--primary-dark-green);
+      color: var(--primary-white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-info-card h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light-green-bg);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .info-text label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    .info-text a, .info-text span {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-white);
+    }
+
+    .info-text a:hover {
+      color: var(--light-green-bg);
+      text-decoration: underline;
+    }
+
+    /* Map UI Placeholder */
+    .map-placeholder {
+      margin-top: auto;
+      height: 180px;
+      background: linear-gradient(135deg, #2E7D6E, #1B4D3E);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .map-content i {
+      font-size: 2.5rem;
+      color: #FF6B6B;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Contact Form Styles */
+    .contact-form-container {
+      background-color: var(--primary-white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      color: var(--dark-text);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(46, 125, 110, 0.15);
+    }
+
+    .form-control.error {
+      border-color: #E53E3E;
+    }
+
+    .error-msg {
+      color: #E53E3E;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .error-msg.visible {
+      display: block;
+    }
+
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .toast {
+      background-color: var(--primary-dark-green);
+      color: var(--primary-white);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .toast.show {
+      transform: translateX(0);
+    }
+
+    .toast-icon {
+      color: #4E8;
+      font-size: 1.2rem;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #0F2D24;
+      color: rgba(255, 255, 255, 0.85);
+      padding-top: 4rem;
+      padding-bottom: 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo {
+      color: var(--primary-white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-white);
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      background-color: var(--accent-green);
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      color: var(--primary-white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background-color: var(--accent-green);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-white);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Back to Top Floating Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--accent-green);
+      color: var(--primary-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background-color: var(--primary-dark-green);
+      transform: translateY(-4px);
+    }
+
+    @media (max-width: 992px) {
+      .hero-grid, .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .nav-links, .nav-btn-desktop {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .section {
+        padding: 3.5rem 0;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .testimonial-slide {
+        padding: 2rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <div class="container nav-container">
+      <a href="#home" class="logo">
+        <i class="fa-solid fa-paw"></i>
+        <span>Mahi Pet Care</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#products" class="nav-link">Products</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#why-us" class="nav-link">Why Us</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <a href="#contact" class="btn btn-primary nav-btn-desktop" onclick="preselectService('General Inquiry')">
+        <i class="fa-regular fa-calendar-check"></i> Book Service
+      </a>
+
+      <div class="mobile-toggle" id="mobile-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="backdrop" id="backdrop"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+      <a href="#home" class="logo">
+        <i class="fa-solid fa-paw"></i>
+        <span>Mahi Pet Care</span>
+      </a>
+      <div class="close-btn" id="close-menu"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="#home" class="mobile-nav-link active">Home</a>
+      <a href="#about" class="mobile-nav-link">About Us</a>
+      <a href="#products" class="mobile-nav-link">Pet Store</a>
+      <a href="#services" class="mobile-nav-link">Our Services</a>
+      <a href="#why-us" class="mobile-nav-link">Why Choose Us</a>
+      <a href="#faq" class="mobile-nav-link">FAQ</a>
+      <a href="#testimonials" class="mobile-nav-link">Reviews</a>
+      <a href="#contact" class="mobile-nav-link">Contact Us</a>
+    </div>
+    <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;" id="mobile-book-btn">
+      <i class="fa-regular fa-calendar-check"></i> Book Service Now
+    </a>
+  </div>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <span class="sub-title"><i class="fa-solid fa-heart"></i> Loved by Pet Parents</span>
+          <h1 class="hero-title">Everything Your Pet Needs, <span>All in One Place</span></h1>
+          <p class="hero-text">From professional grooming and veterinary care to premium organic food and high-quality accessories, Mahi Pet Care is dedicated to keeping your furry family members happy, healthy, and thriving.</p>
+          
+          <div class="hero-buttons">
+            <a href="#products" class="btn btn-primary">
+              <i class="fa-solid fa-bag-shopping"></i> Explore Products
+            </a>
+            <a href="#services" class="btn btn-secondary">
+              <i class="fa-solid fa-user-doctor"></i> Our Services
+            </a>
+          </div>
+
+          <div class="hero-badges">
+            <div class="badge-item">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Trusted Care</span>
+            </div>
+            <div class="badge-item">
+              <i class="fa-solid fa-award"></i>
+              <span>Quality Products</span>
+            </div>
+            <div class="badge-item">
+              <i class="fa-solid fa-heart-pulse"></i>
+              <span>Loving Service</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-container reveal">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80" alt="Happy Dogs Playing Together" class="hero-img" />
+          <div class="floating-card">
+            <div class="floating-card-icon">
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="floating-card-text">
+              <h4>Top Rated Pet Hub</h4>
+              <p>5.0 Ratings in Ashok Vihar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image-wrapper reveal">
+            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80" alt="Groomer taking care of dog" class="about-img" />
+          </div>
+          <div class="about-content reveal">
+            <span class="sub-title">About Mahi Pet Care</span>
+            <h3>Dedicated to Compassionate & Professional Pet Care</h3>
+            <p>At Mahi Pet Care, we believe that pets are cherished family members who deserve the utmost love, respect, and top-tier attention. Located in the heart of Ashok Vihar, our facility provides a clean, safe, and nurturing environment tailored to your pet's needs.</p>
+            <p>Founded with a passion for animal wellness, our team of trained groomers, veterinary specialists, and pet lovers work tirelessly to deliver holistic care under one roof—combining state-of-the-art services with handpicked premium supplies.</p>
+            
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-number">5,000+</span>
+                <span class="stat-label">Happy Pets Care</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">1,000+</span>
+                <span class="stat-label">Quality Products</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">99%</span>
+                <span class="stat-label">Happy Customers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section products-section">
+      <div class="container">
+        <div class="section-title-wrapper reveal">
+          <span class="sub-title">Pet Store</span>
+          <h2 class="section-title">Explore Our Premium Products</h2>
+          <p class="section-description">Handpicked organic nutrition, engaging toys, and stylish accessories for dogs, cats, and birds.</p>
+        </div>
+
+        <div class="filter-pills reveal">
+          <button class="filter-btn active" data-filter="all">All Items</button>
+          <button class="filter-btn" data-filter="food">Food & Treats</button>
+          <button class="filter-btn" data-filter="toys">Toys</button>
+          <button class="filter-btn" data-filter="grooming">Grooming</button>
+          <button class="filter-btn" data-filter="accessories">Accessories</button>
+        </div>
+
+        <div class="products-grid" id="products-grid">
+          <!-- Dynamically Rendered / Static Product Cards -->
+          <div class="product-card reveal" data-category="food">
+            <div class="product-img-box">
+              <span class="product-category-tag">Food</span>
+              <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=600&q=80" alt="Premium Pet Food" class="product-img" />
+            </div>
+            <div class="product-details">
+              <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (48)</div>
+              <h3 class="product-title">Organic Adult Dog Food</h3>
+              <p class="product-desc">Grain-free formula enriched with real chicken, salmon oil, and vital vitamins.</p>
+              <div class="product-footer">
+                <span class="product-price">₹1,299</span>
+                <button class="add-cart-btn" onclick="addToCart('Organic Adult Dog Food')"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal" data-category="food">
+            <div class="product-img-box">
+              <span class="product-category-tag">Food</span>
+              <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=600&q=80" alt="Healthy Treats" class="product-img" />
+            </div>
+            <div class="product-details">
+              <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> (36)</div>
+              <h3 class="product-title">Crunchy Puppy Treats</h3>
+              <p class="product-desc">All-natural oven-baked training bites with sweet potato and peanut butter.</p>
+              <div class="product-footer">
+                <span class="product-price">₹450</span>
+                <button class="add-cart-btn" onclick="addToCart('Crunchy Puppy Treats')"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal" data-category="toys">
+            <div class="product-img-box">
+              <span class="product-category-tag">Toys</span>
+              <img src="https://images.unsplash.com/photo-1535294435445-d7249524ef2e?auto=format&fit=crop&w=600&q=80" alt="Pet Toys" class="product-img" />
+            </div>
+            <div class="product-details">
+              <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (52)</div>
+              <h3 class="product-title">Interactive Tug & Chew Ball</h3>
+              <p class="product-desc">Durable non-toxic rubber ball designed for intense chewers and active fetch.</p>
+              <div class="product-footer">
+                <span class="product-price">₹699</span>
+                <button class="add-cart-btn" onclick="addToCart('Interactive Tug Ball')"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal" data-category="accessories">
+            <div class="product-img-box">
+              <span class="product-category-tag">Accessories</span>
+              <img src="https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=600&q=80" alt="Comfortable Bed" class="product-img" />
+            </div>
+            <div class="product-details">
+              <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (29)</div>
+              <h3 class="product-title">Orthopedic Memory Bed</h3>
+              <p class="product-desc">Ultra-soft washable plush velvet bed offering joint relief and maximum warmth.</p>
+              <div class="product-footer">
+                <span class="product-price">₹2,499</span>
+                <button class="add-cart-btn" onclick="addToCart('Orthopedic Memory Bed')"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal" data-category="grooming">
+            <div class="product-img-box">
+              <span class="product-category-tag">Grooming</span>
+              <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=600&q=80" alt="Grooming Shampoo" class="product-img" />
+            </div>
+            <div class="product-details">
+              <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> (41)</div>
+              <h3 class="product-title">Herbal Aloe Vera Shampoo</h3>
+              <p class="product-desc">Soothes sensitive skin, removes odor, and leaves fur shiny and manageable.</p>
+              <div class="product-footer">
+                <span class="product-price">₹550</span>
+                <button class="add-cart-btn" onclick="addToCart('Herbal Aloe Shampoo')"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal" data-category="accessories">
+            <div class="product-img-box">
+              <span class="product-category-tag">Accessories</span>
+              <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=600&q=80" alt="Collars and Leashes" class="product-img" />
+            </div>
+            <div class="product-details">
+              <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (64)</div>
+              <h3 class="product-title">Padded Leather Collar</h3>
+              <p class="product-desc">Adjustable ergonomic leather collar fitted with brass hardware & ID tag attachment.</p>
+              <div class="product-footer">
+                <span class="product-price">₹899</span>
+                <button class="add-cart-btn" onclick="addToCart('Padded Leather Collar')"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-title-wrapper reveal">
+          <span class="sub-title">Our Services</span>
+          <h2 class="section-title">Professional Pet Care Services</h2>
+          <p class="section-description">Dedicated services provided by certified pet specialists to keep your pets looking and feeling great.</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fa-solid fa-scissors"></i></div>
+            <h3 class="service-title">Pet Grooming</h3>
+            <p class="service-desc">Complete fur styling, hair trimming, nail clipping, and ear cleaning for all dog and cat breeds.</p>
+            <a href="#contact" class="btn btn-secondary" onclick="preselectService('Pet Grooming')">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fa-solid fa-soap"></i></div>
+            <h3 class="service-title">Pet Bathing</h3>
+            <p class="service-desc">Relaxing herbal hydro-bath, blow dry, coat conditioning, and flea control treatment.</p>
+            <a href="#contact" class="btn btn-secondary" onclick="preselectService('Pet Bathing')">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <h3 class="service-title">Day Care</h3>
+            <p class="service-desc">Safe day daycare environment with supervised socialization, games, and regular feeding schedules.</p>
+            <a href="#contact" class="btn btn-secondary" onclick="preselectService('Pet Care / Daycare')">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fa-solid fa-user-doctor"></i></div>
+            <h3 class="service-title">Veterinary Assistance</h3>
+            <p class="service-desc">Routine health checkups, vaccination schedules, nutrition consultation, and basic care.</p>
+            <a href="#contact" class="btn btn-secondary" onclick="preselectService('Veterinary Assistance')">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fa-solid fa-hotel"></i></div>
+            <h3 class="service-title">Pet Boarding</h3>
+            <p class="service-desc">Overnight cozy suites, climate control, personal care takers, and daily updates for pet parents.</p>
+            <a href="#contact" class="btn btn-secondary" onclick="preselectService('Pet Boarding')">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fa-solid fa-dog"></i></div>
+            <h3 class="service-title">Pet Training</h3>
+            <p class="service-desc">Positive reinforcement obedience training, puppy socialization, and behavioral correction.</p>
+            <a href="#contact" class="btn btn-secondary" onclick="preselectService('Pet Training')">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us" class="section why-section">
+      <div class="container">
+        <div class="section-title-wrapper reveal">
+          <span class="sub-title">Why Choose Us</span>
+          <h2 class="section-title">The Mahi Pet Care Difference</h2>
+          <p class="section-description">We blend passionate expertise with top-tier facilities to offer unmatched care for your companion.</p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card reveal">
+            <div class="why-icon-box"><i class="fa-solid fa-shield-check"></i></div>
+            <div class="why-content">
+              <h4>Quality Products</h4>
+              <p>We stock only verified, non-toxic, organic foods and safety-inspected accessories.</p>
+            </div>
+          </div>
+
+          <div class="why-card reveal">
+            <div class="why-icon-box"><i class="fa-solid fa-heart"></i></div>
+            <div class="why-content">
+              <h4>Trusted Pet Care</h4>
+              <p>Your pet's comfort and happiness are our highest priority at all times.</p>
+            </div>
+          </div>
+
+          <div class="why-card reveal">
+            <div class="why-icon-box"><i class="fa-solid fa-user-check"></i></div>
+            <div class="why-content">
+              <h4>Experienced Team</h4>
+              <p>Certified groomers, trainers, and care-handlers with over a decade of domain expertise.</p>
+            </div>
+          </div>
+
+          <div class="why-card reveal">
+            <div class="why-icon-box"><i class="fa-solid fa-house-chimney-crack"></i></div>
+            <div class="why-content">
+              <h4>Pet-Friendly Environment</h4>
+              <p>Hygienic, stress-free, climate-controlled, and spacious play zones.</p>
+            </div>
+          </div>
+
+          <div class="why-card reveal">
+            <div class="why-icon-box"><i class="fa-solid fa-tags"></i></div>
+            <div class="why-content">
+              <h4>Affordable Pricing</h4>
+              <p>Transparent rates for all grooming, boarding, and healthcare services with zero hidden costs.</p>
+            </div>
+          </div>
+
+          <div class="why-card reveal">
+            <div class="why-icon-box"><i class="fa-solid fa-headset"></i></div>
+            <div class="why-content">
+              <h4>24/7 Customer Support</h4>
+              <p>Always available to answer your queries, book appointments, or assist with pet emergencies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-title-wrapper reveal">
+          <span class="sub-title">Got Questions?</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-description">Find quick answers to common questions about our pet services and online store.</p>
+        </div>
+
+        <div class="faq-container reveal">
+          <div class="faq-item active">
+            <button class="faq-question">
+              <span>What types of pets do you care for?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We primarily specialize in dogs and cats of all breeds and sizes. We also offer select products and consulting for birds and small domestic pets.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Do you offer pet grooming?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! We offer full-service grooming including bath, blow-dry, breed-specific haircuts, nail trimming, ear cleaning, and de-shedding treatments.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I book a service online?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely! You can easily select your desired service in our Contact Us form on this website or call/WhatsApp us directly at 9266907803.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What products do you sell?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We sell organic kibble, healthy wet food, natural treats, chew toys, comfortable memory beds, shampoos, leashes, collars, and wellness accessories.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Do you offer pet boarding?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, we provide luxury overnight boarding with private comfortable spaces, personalized feeding routines, and continuous supervision in Ashok Vihar.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How can I contact you?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>You can call us at 9266907803, email mahipet9266@gmail.com, or visit our facility located at Ashok Vihar during business hours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="section testimonials-section">
+      <div class="container">
+        <div class="section-title-wrapper reveal">
+          <span class="sub-title">Testimonials</span>
+          <h2 class="section-title">What Pet Parents Say</h2>
+          <p class="section-description">Read real feedback from our wonderful community of pet owners in Ashok Vihar.</p>
+        </div>
+
+        <div class="testimonial-carousel-wrapper reveal">
+          <div class="testimonial-track-container">
+            <div class="testimonial-track" id="testimonial-track">
+              <!-- Slide 1 -->
+              <div class="testimonial-slide">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Priya Sharma" class="testimonial-avatar" />
+                <div class="testimonial-stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Mahi Pet Care is the best grooming center in Ashok Vihar! My Golden Retriever, Bruno, came back looking handsome and smelling amazing. The staff handles animals with so much patience."</p>
+                <h4 class="testimonial-author">Priya Sharma</h4>
+                <span class="testimonial-role">Pet Parent to Bruno (Golden Retriever)</span>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="testimonial-slide">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Rahul Verma" class="testimonial-avatar" />
+                <div class="testimonial-stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"I boarded my cat, Milo, for three days while traveling. The team sent me regular video updates. I could tell Milo felt right at home! Highly recommended."</p>
+                <h4 class="testimonial-author">Rahul Verma</h4>
+                <span class="testimonial-role">Pet Parent to Milo (Persian Cat)</span>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="testimonial-slide">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Ananya Gupta" class="testimonial-avatar" />
+                <div class="testimonial-stars">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"The organic pet food and chew toys I bought here are top quality. Great price, authentic products, and extremely friendly advice from the store owner!"</p>
+                <h4 class="testimonial-author">Ananya Gupta</h4>
+                <span class="testimonial-role">Pet Parent to Coco (Beagle)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="prev-testimonial" aria-label="Previous Testimonial"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+            <button class="carousel-btn" id="next-testimonial" aria-label="Next Testimonial"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-title-wrapper reveal">
+          <span class="sub-title">Contact Us</span>
+          <h2 class="section-title">Get In Touch With Us</h2>
+          <p class="section-description">Book a appointment, inquire about products, or drop by our center in Ashok Vihar.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card reveal">
+            <h3>Reach Us Directly</h3>
+            <p>Have questions about our pet services or need custom advice? Call or write to us anytime!</p>
+
+            <div class="info-list">
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="info-text">
+                  <label>Phone Call / WhatsApp</label>
+                  <a href="tel:9266907803">9266907803</a>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="info-text">
+                  <label>Email Address</label>
+                  <a href="mailto:mahipet9266@gmail.com">mahipet9266@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="info-text">
+                  <label>Store Location</label>
+                  <span>Ashok Vihar, Plot no.13,Main road,Gurgaon,Haryana</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modern Map Placeholder UI -->
+            <div class="map-placeholder">
+              <div class="map-content">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <h4 style="font-size: 1.1rem; color: #fff;">Ashok Vihar Pet Center</h4>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Visit our state-of-the-art facility</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-container reveal">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="fullname">Full Name *</label>
+                <input type="text" id="fullname" class="form-control" placeholder="e.g. Rahul Sharma" required />
+                <span class="error-msg" id="name-error">Please enter your full name.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" class="form-control" placeholder="e.g. rahul@example.com" required />
+                <span class="error-msg" id="email-error">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" class="form-control" placeholder="e.g. 9266907803" required />
+                <span class="error-msg" id="phone-error">Please enter a valid 10-digit phone number.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="service">Select Service</label>
+                <select id="service" class="form-control">
+                  <option value="General Inquiry">General Inquiry</option>
+                  <option value="Pet Grooming">Pet Grooming</option>
+                  <option value="Pet Bathing">Pet Bathing</option>
+                  <option value="Pet Care / Daycare">Pet Daycare</option>
+                  <option value="Veterinary Assistance">Veterinary Assistance</option>
+                  <option value="Pet Boarding">Pet Boarding</option>
+                  <option value="Pet Training">Pet Training</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message / Notes *</label>
+                <textarea id="message" class="form-control" rows="4" placeholder="Tell us about your pet (breed, age) and preferred time..." required></textarea>
+                <span class="error-msg" id="message-error">Please enter a message (min 10 characters).</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <i class="fa-solid fa-paper-plane"></i> Submit Request
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="logo">
+            <i class="fa-solid fa-paw"></i>
+            <span>Mahi Pet Care</span>
+          </a>
+          <p>Your one-stop destination for compassionate pet care, professional grooming, veterinary assistance, and quality pet supplies in Ashok Vihar.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#products">Pet Store</a>
+            <a href="#services">Our Services</a>
+            <a href="#why-us">Why Us</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Our Services</h4>
+          <div class="footer-links">
+            <a href="#services">Pet Grooming</a>
+            <a href="#services">Pet Bathing</a>
+            <a href="#services">Veterinary Support</a>
+            <a href="#services">Pet Boarding</a>
+            <a href="#services">Obedience Training</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <div class="footer-links">
+            <p style="margin-bottom:0.5rem;"><i class="fa-solid fa-phone" style="color:var(--accent-green); margin-right:8px;"></i> <a href="tel:9266907803">9266907803</a></p>
+            <p style="margin-bottom:0.5rem;"><i class="fa-solid fa-envelope" style="color:var(--accent-green); margin-right:8px;"></i> <a href="mailto:mahipet9266@gmail.com">mahipet9266@gmail.com</a></p>
+            <p><i class="fa-solid fa-location-dot" style="color:var(--accent-green); margin-right:8px;"></i> Ashok Vihar</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Mahi Pet Store. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <div class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
+
+  <!-- Dynamic Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* 1. Sticky Header & Back to Top Floating Button Scroll Behavior */
+      const header = document.getElementById('header');
+      const backToTopBtn = document.getElementById('back-to-top');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        if (window.scrollY > 400) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+
+        highlightActiveNavLink();
+      });
+
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* 2. Mobile Drawer Navigation Toggle */
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const closeMenu = document.getElementById('close-menu');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const backdrop = document.getElementById('backdrop');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      const mobileBookBtn = document.getElementById('mobile-book-btn');
+
+      function openMobileMenu() {
+        mobileMenu.classList.add('open');
+        backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        backdrop.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      mobileToggle.addEventListener('click', openMobileMenu);
+      closeMenu.addEventListener('click', closeMobileMenu);
+      backdrop.addEventListener('click', closeMobileMenu);
+
+      mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+      if (mobileBookBtn) mobileBookBtn.addEventListener('click', closeMobileMenu);
+
+      /* 3. Active Section Scroll Highlighting */
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      function highlightActiveNavLink() {
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(current => {
+          const sectionHeight = current.offsetHeight;
+          const sectionTop = current.offsetTop - 100;
+          const sectionId = current.getAttribute('id');
+
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+
+      /* 4. Product Filtering Logic */
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const productCards = document.querySelectorAll('.product-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          productCards.forEach(card => {
+            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      /* 5. FAQ Accordion (Single-Expand Mode) */
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+        questionBtn.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+
+          // Close all FAQ items
+          faqItems.forEach(i => i.classList.remove('active'));
+
+          // Toggle current item if it wasn't open
+          if (!isActive) {
+            item.classList.add('active');
+          }
+        });
+      });
+
+      /* 6. Testimonial Carousel Slider */
+      const track = document.getElementById('testimonial-track');
+      const slides = Array.from(track.children);
+      const nextBtn = document.getElementById('next-testimonial');
+      const prevBtn = document.getElementById('prev-testimonial');
+      const dotsNav = document.getElementById('carousel-dots');
+
+      let currentIndex = 0;
+
+      // Create dots dynamically
+      slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => moveToSlide(index));
+        dotsNav.appendChild(dot);
+      });
+
+      const dots = Array.from(dotsNav.children);
+
+      function moveToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(d => d.classList.remove('active'));
+        dots[index].classList.add('active');
+        currentIndex = index;
+      }
+
+      nextBtn.addEventListener('click', () => moveToSlide(currentIndex + 1));
+      prevBtn.addEventListener('click', () => moveToSlide(currentIndex - 1));
+
+      // Touch / Swipe support for Testimonial Carousel
+      let startX = 0;
+      let endX = 0;
+
+      track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) moveToSlide(currentIndex + 1);
+        if (endX - startX > 50) moveToSlide(currentIndex - 1);
+      }, { passive: true });
+
+      /* 7. Contact Form Validation & Submission Handler */
+      const contactForm = document.getElementById('contact-form');
+      const nameInput = document.getElementById('fullname');
+      const emailInput = document.getElementById('email');
+      const phoneInput = document.getElementById('phone');
+      const messageInput = document.getElementById('message');
+
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        // Name Validation
+        if (!nameInput.value.trim()) {
+          showError('name-error', nameInput);
+          isValid = false;
+        } else {
+          hideError('name-error', nameInput);
+        }
+
+        // Email Validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value.trim())) {
+          showError('email-error', emailInput);
+          isValid = false;
+        } else {
+          hideError('email-error', emailInput);
+        }
+
+        // Phone Validation (Basic 10-digit check)
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(phoneInput.value.trim())) {
+          showError('phone-error', phoneInput);
+          isValid = false;
+        } else {
+          hideError('phone-error', phoneInput);
+        }
+
+        // Message Validation
+        if (messageInput.value.trim().length < 10) {
+          showError('message-error', messageInput);
+          isValid = false;
+        } else {
+          hideError('message-error', messageInput);
+        }
+
+        if (isValid) {
+          showToast('Thank you! Your request has been sent successfully.', 'success');
+          contactForm.reset();
+        }
+      });
+
+      function showError(errorId, inputElement) {
+        document.getElementById(errorId).classList.add('visible');
+        inputElement.classList.add('error');
+      }
+
+      function hideError(errorId, inputElement) {
+        document.getElementById(errorId).classList.remove('visible');
+        inputElement.classList.remove('error');
+      }
+
+      /* 8. IntersectionObserver for Smooth Scroll Reveal Animations */
+      const revealElements = document.querySelectorAll('.reveal');
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+    });
+
+    /* Helper Function: Auto Select Service in Contact Form */
+    function preselectService(serviceName) {
+      const serviceSelect = document.getElementById('service');
+      if (serviceSelect) {
+        serviceSelect.value = serviceName;
+      }
+    }
+
+    /* Helper Function: Toast Notifications */
+    function addToCart(productName) {
+      showToast(`"${productName}" added to your cart!`, 'cart');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.classList.add('toast');
+
+      let icon = 'fa-circle-check';
+      if (type === 'cart') icon = 'fa-bag-shopping';
+
+      toast.innerHTML = `
+        <i class="fa-solid ${icon} toast-icon"></i>
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => toast.classList.add('show'), 100);
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
